@@ -1,11 +1,14 @@
 package dataStructure;
+
+import java.io.Serializable;
+
 /**
  * This interface represents the set of operations applicable on a 
  * directional edge(src,dest) in a (directional) weighted graph.
  * @author boaz.benmoshe
  *
  */
-public interface edge_data {
+public interface edge_data extends Serializable{
 	/**
 	 * The id of the source node of this edge.
 	 * @return

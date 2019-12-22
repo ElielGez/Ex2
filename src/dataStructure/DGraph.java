@@ -5,6 +5,11 @@ import java.util.LinkedHashMap;
 
 public class DGraph implements graph {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private LinkedHashMap<Integer, node_data> vertices;
 	private LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>> edges;
 	private int mc;
@@ -137,6 +142,11 @@ public class DGraph implements graph {
 			}
 		}
 		return s;
+	}
+
+	@Override
+	public graph copy() {
+		return new DGraph(this);
 	}
 
 }

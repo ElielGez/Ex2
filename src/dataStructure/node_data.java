@@ -1,5 +1,7 @@
 package dataStructure;
 
+import java.io.Serializable;
+
 import utils.Point3D;
 /**
  * This interface represents the set of operations applicable on a 
@@ -7,7 +9,7 @@ import utils.Point3D;
  * @author boaz.benmoshe
  *
  */
-public interface node_data {
+public interface node_data extends Serializable {
 	/**
 	 * Return the key (id) associated with this node.
 	 * @return
