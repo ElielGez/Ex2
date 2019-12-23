@@ -75,7 +75,7 @@ public class Graph_Algo implements graph_algorithms {
 
 	@Override
 	public double shortestPathDist(int src, int dest) {
-		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 

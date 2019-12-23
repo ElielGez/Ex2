@@ -1,5 +1,7 @@
 package dataStructure;
 
+import java.util.Random;
+
 import utils.Point3D;
 
 public class Node implements node_data {
@@ -14,6 +16,7 @@ public class Node implements node_data {
 		setKey();
 		setTag(1);
 		setWeight(Double.MAX_VALUE);
+		setLocation(getRandomLocation());
 	}
 	
 	public Node(node_data n) {
@@ -86,6 +89,12 @@ public class Node implements node_data {
 	public String toString() {
 		return "Node data - " + " key: " + this.key + " location: " + this.location + " weight: " + this.weight + " info: "
 				+ this.info + " tag: " + this.tag;
+	}
+	
+	private static Point3D getRandomLocation() {
+		int randomX = new Random().nextInt(400);
+		int randomY = new Random().nextInt(400);
+		return new Point3D(randomX,randomY);
 	}
 
 }
