@@ -86,4 +86,6 @@ public interface graph extends Serializable {
 	public int getMC();
 	
 	public graph copy();
+	
+	public void initNodesGraph();
 }

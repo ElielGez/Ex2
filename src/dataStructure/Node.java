@@ -14,9 +14,7 @@ public class Node implements node_data {
 
 	public Node() {
 		setKey();
-		setTag(1);
-		setWeight(Double.MAX_VALUE);
-		setLocation(getRandomLocation());
+		this.initNode();
 	}
 	
 	public Node(node_data n) {
@@ -95,6 +93,13 @@ public class Node implements node_data {
 		int randomX = new Random().nextInt(400);
 		int randomY = new Random().nextInt(400);
 		return new Point3D(randomX,randomY);
+	}
+	
+	public void initNode() {
+		setTag(0);
+		setInfo("");
+		setWeight(Double.MAX_VALUE);
+		setLocation(getRandomLocation());
 	}
 
 }

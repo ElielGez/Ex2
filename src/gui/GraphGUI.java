@@ -1,10 +1,8 @@
 package gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -34,12 +32,16 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	}
 
 	private void initGUI(int width, int height) {
-		this.setSize(500, 500);
+		this.setSize(width,height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		this.drawGraph(g);
+	}
+	
+	private void drawGraph(Graphics g) {
 		for (node_data src : this.g.getV()) {
 			Point3D pSrc = src.getLocation();
 			g.setColor(Color.BLUE);
@@ -53,7 +55,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					Point3D pDest = dest.getLocation();
 					g.setColor(Color.RED);
 					g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
-
+					g.setColor(Color.DARK_GRAY);
+					g.setFont(new Font("Arial",Font.BOLD, 15));
 					int centerX = (pSrc.ix() + pDest.ix()) / 2;
 					int centerY = (pSrc.iy() + pDest.iy()) / 2;
 					g.drawString("" + edge.getWeight(), centerX, centerY);
@@ -65,14 +68,6 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					g.fillOval(centerX, centerY, 7, 7);
 				}
 			}
-//			if(prev != null)
-//			{
-//				g.setColor(Color.RED);
-//				g.drawLine((int)p.x(), (int)p.y(), 
-//						(int)prev.x(), (int)prev.y());
-//				
-//				g.drawString("5", (int)((p.x()+prev.x())/2),(int)((p.y()+prev.y())/2));
-//			}
 		}
 	}
 

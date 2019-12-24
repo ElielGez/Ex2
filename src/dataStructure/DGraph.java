@@ -9,7 +9,7 @@ public class DGraph implements graph {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private LinkedHashMap<Integer, node_data> vertices;
 	private LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>> edges;
 	private int mc;
@@ -26,7 +26,7 @@ public class DGraph implements graph {
 		this.edges = (LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>>) g.edges.clone();
 		this.mc = g.getMC();
 		this.edgesSize = g.edgeSize();
-		
+
 	}
 
 	public DGraph(int vertices) {
@@ -57,16 +57,16 @@ public class DGraph implements graph {
 	public void connect(int src, int dest, double w) {
 		node_data s = this.vertices.get(src);
 		node_data d = this.vertices.get(dest);
-		if(s == null || d == null) {
+		if (s == null || d == null) {
 			System.out.println("Cannot connect between this vertices , some of them or maybe both , are null");
 			return;
 		}
 		LinkedHashMap<Integer, edge_data> hp = this.edges.get(src);
-		if(hp == null) {
+		if (hp == null) {
 			// new src , create new linked list of edge values.
 			hp = new LinkedHashMap<Integer, edge_data>();
 		}
-		edge_data e = new Edge(src,dest,w);
+		edge_data e = new Edge(src, dest, w);
 		hp.put(dest, e);
 		this.edges.put(src, hp);
 		this.edgesSize++;
@@ -90,20 +90,23 @@ public class DGraph implements graph {
 	public node_data removeNode(int key) {
 		LinkedHashMap<Integer, edge_data> e = this.edges.remove(key);
 		node_data n = this.vertices.remove(key);
-		
-		if(e.values() != null && n != null) this.mc++;
-		
-		if(e.values() != null) this.edgesSize -= e.size();
-		
+
+		if (e.values() != null && n != null)
+			this.mc++;
+
+		if (e.values() != null)
+			this.edgesSize -= e.size();
+
 		return n;
-		
+
 	}
 
 	@Override
 	public edge_data removeEdge(int src, int dest) {
 		edge_data e = this.edges.get(src).remove(dest);
-		if(e != null) this.edgesSize--;
-		
+		if (e != null)
+			this.edgesSize--;
+
 		return e;
 	}
 
@@ -121,23 +124,22 @@ public class DGraph implements graph {
 	public int getMC() {
 		return this.mc;
 	}
-	
+
 	public String verticesString() {
 		String s = "";
 		for (int key : this.vertices.keySet()) {
 			s += this.vertices.get(key) + "\n";
 		}
-		return s;		
+		return s;
 	}
-	
+
 	public String toString() {
 		String s = "";
 		for (int src : this.edges.keySet()) {
 			LinkedHashMap<Integer, edge_data> edgeSrc = this.edges.get(src);
-			if(edgeSrc != null) {
+			if (edgeSrc != null) {
 				for (int dest : edgeSrc.keySet()) {
-					s += "HashMap data - src: " + src + " dest: " + dest + "\n" 
-							 + edgeSrc.get(dest) + "\n\n";
+					s += "HashMap data - src: " + src + " dest: " + dest + "\n" + edgeSrc.get(dest) + "\n\n";
 				}
 			}
 		}
@@ -147,6 +149,14 @@ public class DGraph implements graph {
 	@Override
 	public graph copy() {
 		return new DGraph(this);
+	}
+
+	@Override
+	public void initNodesGraph() {
+		for (node_data n : this.getV()) {
+			n.initNode();
+		}
+
 	}
 
 }

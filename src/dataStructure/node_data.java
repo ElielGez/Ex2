@@ -58,4 +58,6 @@ public interface node_data extends Serializable {
 	 * @param t - the new value of the tag
 	 */
 	public void setTag(int t);
+	
+	public void initNode();
 }
