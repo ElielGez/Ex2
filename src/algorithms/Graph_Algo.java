@@ -106,10 +106,14 @@ public class Graph_Algo implements graph_algorithms {
 				nSrc = getMinimumNode();
 			}
 			return nSrc.getWeight();
-		} catch (RuntimeException e) {
-			System.out.println("Invalid src or dest");
-			return 0;
 		}
+		catch (NullPointerException e) {
+			System.out.println("Please init the graph with nodes and edges first");
+		}
+		catch (RuntimeException e) {
+			System.out.println("Invalid src or dest");
+		}
+		return 0;
 	}
 
 	private node_data getMinimumNode() {

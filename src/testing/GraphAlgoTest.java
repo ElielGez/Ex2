@@ -27,16 +27,16 @@ public class GraphAlgoTest {
 		g.connect(6, 5, 15);
 		
 		Graph_Algo ga = new Graph_Algo();
-		ga.init(g);
-//		System.out.println(ga.shortestPathDist(2, 6));
+//		ga.init(g);
+		System.out.println(ga.shortestPathDist(1, 2));
 //		System.out.println(ga.isConnected());
-		LinkedList<Integer> l = new LinkedList<Integer>();
-		l.add(1);
-		l.add(4);
-		l.add(2);
-		
-		LinkedList<node_data> list = (LinkedList<node_data>) ga.TSP(l);
-		System.out.println(list);
+//		LinkedList<Integer> l = new LinkedList<Integer>();
+//		l.add(1);
+//		l.add(4);
+//		l.add(2);
+//		
+//		LinkedList<node_data> list = (LinkedList<node_data>) ga.TSP(l);
+//		System.out.println(list);
 
 	}
 
