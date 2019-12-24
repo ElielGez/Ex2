@@ -1,8 +1,10 @@
 package gui;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -41,7 +43,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		this.drawGraph(g);
 	}
 	
-	private void drawGraph(Graphics g) {
+	private void drawGraph(Graphics g1) {
+		Graphics2D g = (Graphics2D)g1;
 		for (node_data src : this.g.getV()) {
 			Point3D pSrc = src.getLocation();
 			g.setColor(Color.BLUE);
@@ -54,7 +57,9 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					node_data dest = this.g.getNode(edge.getDest());
 					Point3D pDest = dest.getLocation();
 					g.setColor(Color.RED);
+					g.setStroke(new BasicStroke(3));
 					g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
+					
 					g.setColor(Color.DARK_GRAY);
 					g.setFont(new Font("Arial",Font.BOLD, 15));
 					int centerX = (pSrc.ix() + pDest.ix()) / 2;
