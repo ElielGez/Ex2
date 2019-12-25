@@ -15,11 +15,18 @@ public class DGraph implements graph {
 	private int mc;
 	private int edgesSize;
 
+	/**
+	 * Empty constructor - init hashmaps
+	 */
 	public DGraph() {
 		this.vertices = new LinkedHashMap<Integer, node_data>();
 		this.edges = new LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>>();
 	}
 
+	/**
+	 * Deep copy constructor
+	 * @param g
+	 */
 	@SuppressWarnings("unchecked")
 	public DGraph(DGraph g) {
 		this.vertices = (LinkedHashMap<Integer, node_data>) g.vertices.clone();
@@ -29,6 +36,10 @@ public class DGraph implements graph {
 
 	}
 
+	/**
+	 * Constructor to create fast nodes
+	 * @param vertices
+	 */
 	public DGraph(int vertices) {
 		this();
 		for (int i = 0; i < vertices; i++) {
@@ -37,22 +48,34 @@ public class DGraph implements graph {
 		}
 	}
 
+	/**
+	 * Getter for node in vertices hashmap
+	 */
 	@Override
 	public node_data getNode(int key) {
 		return this.vertices.get(key);
 	}
 
+	/**
+	 * Getter for edge in edges hashmap
+	 */
 	@Override
 	public edge_data getEdge(int src, int dest) {
 		return this.edges.get(src).get(dest);
 	}
 
+	/**
+	 * Add node function , add to hashmap
+	 */
 	@Override
 	public void addNode(node_data n) {
 		this.vertices.put(n.getKey(), n);
 		this.mc++;
 	}
 
+	/**
+	 * Function to connect between 2 nodes by edge
+	 */
 	@Override
 	public void connect(int src, int dest, double w) {
 		node_data s = this.vertices.get(src);
@@ -73,11 +96,17 @@ public class DGraph implements graph {
 		this.mc++;
 	}
 
+	/**
+	 * Function to get collection of nodes from hashmap
+	 */
 	@Override
 	public Collection<node_data> getV() {
 		return this.vertices.values();
 	}
 
+	/**
+	 * Function to get collection of edges from hashmap
+	 */
 	@Override
 	public Collection<edge_data> getE(int node_id) {
 		LinkedHashMap<Integer, edge_data> edgesSrc = this.edges.get(node_id);
@@ -101,6 +130,9 @@ public class DGraph implements graph {
 
 	}
 
+	/**
+	 * Function to remove edge from the hashmap
+	 */
 	@Override
 	public edge_data removeEdge(int src, int dest) {
 		edge_data e = this.edges.get(src).remove(dest);
@@ -112,21 +144,35 @@ public class DGraph implements graph {
 		return e;
 	}
 
+	/**
+	 * Function to get nodes size
+	 */
 	@Override
 	public int nodeSize() {
 		return this.vertices.size();
 	}
 
+	/**
+	 * Function to get edges size
+	 */
 	@Override
 	public int edgeSize() {
 		return this.edgesSize;
 	}
 
+	/**
+	 * Getter for mc
+	 * Mc is the param to count how much changes made on this graph
+	 */
 	@Override
 	public int getMC() {
 		return this.mc;
 	}
 
+	/**
+	 * Function to print vertices of the graph only
+	 * @return
+	 */
 	public String verticesString() {
 		String s = "";
 		for (int key : this.vertices.keySet()) {
@@ -135,6 +181,9 @@ public class DGraph implements graph {
 		return s;
 	}
 
+	/**
+	 * Override toString function
+	 */
 	public String toString() {
 		String s = "";
 		for (int src : this.edges.keySet()) {
@@ -148,11 +197,17 @@ public class DGraph implements graph {
 		return s;
 	}
 
+	/**
+	 * Deep copy function
+	 */
 	@Override
 	public graph copy() {
 		return new DGraph(this);
 	}
 
+	/**
+	 * Function to reset the nodes on the graph , used on algorithms
+	 */
 	@Override
 	public void initNodesGraph() {
 		for (node_data n : this.getV()) {
