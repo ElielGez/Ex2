@@ -25,13 +25,9 @@ public class Node implements node_data {
 		this.tag = n.getTag();
 	}
 
-	//need this?
-	public Node(Point3D location, double weight, String info, int tag) {
+	public Node(Point3D location) {
 		setKey();
 		this.location = new Point3D(location);
-		this.weight = weight;
-		this.info = info;
-		this.tag = tag;
 	}
 
 	@Override

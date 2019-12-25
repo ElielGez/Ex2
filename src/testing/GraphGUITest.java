@@ -8,14 +8,14 @@ import utils.Point3D;
 
 public class GraphGUITest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		DGraph g = new DGraph();
-		g.addNode(new Node(new Point3D(30,500),0,"",0));
-		g.addNode(new Node(new Point3D(270,80),0,"",0));
-		g.addNode(new Node(new Point3D(50,100),0,"",0));
-		g.addNode(new Node(new Point3D(250,250),0,"",0));
-		g.addNode(new Node(new Point3D(500,250),0,"",0));
-		g.addNode(new Node(new Point3D(450,550),0,"",0));
+		g.addNode(new Node(new Point3D(30,500)));
+		g.addNode(new Node(new Point3D(270,80)));
+		g.addNode(new Node(new Point3D(50,100)));
+		g.addNode(new Node(new Point3D(250,250)));
+		g.addNode(new Node(new Point3D(500,250)));
+		g.addNode(new Node(new Point3D(450,550)));
 		g.connect(1, 3, 14);
 		g.connect(1, 4, 9);
 		g.connect(1, 6, 7);
@@ -30,8 +30,10 @@ public class GraphGUITest {
 		g.connect(5, 2, 6);
 		g.connect(6, 5, 15);
 		GraphGUI gui = new GraphGUI(1000,1000,g);
-		System.out.println(((DGraph)gui.g).verticesString());
-		gui.setVisible(true);
+		Thread.sleep(3000);
+		gui.getG().removeEdge(1, 3);
+		g.addNode(new Node(new Point3D(550,650)));
+		g.connect(6, 7, 15);
 	}
 
 }

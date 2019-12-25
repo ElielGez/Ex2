@@ -21,26 +21,56 @@ import dataStructure.node_data;
 import utils.Point3D;
 
 public class GraphGUI extends JFrame implements ActionListener, MouseListener {
-	public graph g;
+	private graph g;
+	private int mc;
 
 	public GraphGUI() {
-		g = new DGraph(20);
+		this.g = new DGraph(20);
+		this.mc = this.g.getMC();
 		initGUI(700, 700);
 	}
 
 	public GraphGUI(int width, int height, graph g) {
 		this.g = g;
+		this.mc = g.getMC();
 		initGUI(width, height);
+	}
+
+	public graph getG() {
+		return this.g;
+	}
+
+	public int getMc() {
+		return this.mc;
 	}
 
 	private void initGUI(int width, int height) {
 		this.setSize(width,height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setVisible(true);
+		this.initMcThread();
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
 		this.drawGraph(g);
+	}
+	
+	public void initMcThread() {
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while(true) {
+					synchronized (g) {
+						if(g.getMC() != mc) {
+							mc = g.getMC();
+							repaint();
+						}
+					}
+				}
+			}
+		});
+		t.start();
 	}
 	
 	private void drawGraph(Graphics g1) {

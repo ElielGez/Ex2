@@ -2,7 +2,6 @@ package algorithms;
 
 import java.util.List;
 
-import dataStructure.DGraph;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
@@ -25,7 +24,6 @@ import java.util.LinkedList;
  *
  */
 public class Graph_Algo implements graph_algorithms {
-	public static final Comparator<node_data> _Comp = new VertexComparator();
 	private graph g;
 
 	@Override
@@ -168,23 +166,6 @@ public class Graph_Algo implements graph_algorithms {
 
 	public graph getGraph() {
 		return this.g;
-	}
-
-}
-
-class VertexComparator implements Comparator<node_data> {
-
-	public VertexComparator() {
-		;
-	}
-
-	public int compare(node_data n1, node_data n2) {
-		int ans = 0;
-		if (n1.getWeight() - n2.getWeight() > 0)
-			ans = 1;
-		else if (n1.getWeight() - n2.getWeight() < 0)
-			ans = -1;
-		return ans;
 	}
 
 }

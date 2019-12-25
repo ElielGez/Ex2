@@ -104,8 +104,10 @@ public class DGraph implements graph {
 	@Override
 	public edge_data removeEdge(int src, int dest) {
 		edge_data e = this.edges.get(src).remove(dest);
-		if (e != null)
+		if (e != null) {
 			this.edgesSize--;
+			this.mc++;
+		}
 
 		return e;
 	}
