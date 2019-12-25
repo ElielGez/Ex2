@@ -26,11 +26,17 @@ import java.util.LinkedList;
 public class Graph_Algo implements graph_algorithms {
 	private graph g;
 
+	/**
+	 * Function to init the graph on this graph_algo object
+	 */
 	@Override
 	public void init(graph g) {
 		this.g = g;
 	}
 
+	/**
+	 * Function to init the graph by file
+	 */
 	@Override
 	public void init(String file_name) {
 		try {
@@ -54,6 +60,9 @@ public class Graph_Algo implements graph_algorithms {
 
 	}
 
+	/**
+	 * Function to save the graph object
+	 */
 	@Override
 	public void save(String file_name) {
 		try {
@@ -69,6 +78,9 @@ public class Graph_Algo implements graph_algorithms {
 
 	}
 
+	/**
+	 * Algorithm to check if the graph is fully connected
+	 */
 	@Override
 	public boolean isConnected() {
 		for (node_data src : this.g.getV()) {
@@ -82,6 +94,9 @@ public class Graph_Algo implements graph_algorithms {
 		return true;
 	}
 
+	/**
+	 * Algorithm to find the shortes path distance between src and dest
+	 */
 	@Override
 	public double shortestPathDist(int src, int dest) {
 		try {
@@ -114,6 +129,10 @@ public class Graph_Algo implements graph_algorithms {
 		return 0;
 	}
 
+	/**
+	 * Function to get the minimum node by weight
+	 * @return
+	 */
 	private node_data getMinimumNode() {
 		node_data n = null;
 		for (node_data node : this.g.getV()) {
@@ -127,6 +146,9 @@ public class Graph_Algo implements graph_algorithms {
 		return n;
 	}
 
+	/**
+	 * Algorithm to get the shorest path in oredered list
+	 */
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
 		LinkedList<node_data> list = new LinkedList<node_data>();
@@ -141,6 +163,11 @@ public class Graph_Algo implements graph_algorithms {
 		return reverseList(list);
 	}
 
+	/**
+	 * Function to reverse list
+	 * @param list
+	 * @return
+	 */
 	private static LinkedList<node_data> reverseList(LinkedList<node_data> list) {
 		LinkedList<node_data> rList = new LinkedList<node_data>();
 		while (!list.isEmpty()) {
@@ -150,6 +177,9 @@ public class Graph_Algo implements graph_algorithms {
 		return rList;
 	}
 
+	/**
+	 * Algorithm that computes a relatively short path which visit each node in the targets List
+	 */
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
 		if(!this.isConnected()) return null;
@@ -160,11 +190,18 @@ public class Graph_Algo implements graph_algorithms {
 		return list;
 	}
 
+	/**
+	 * Deep copy function
+	 */
 	@Override
 	public graph copy() {
 		return this.g.copy();
 	}
 
+	/**
+	 * Getter for the graph
+	 * @return
+	 */
 	public graph getGraph() {
 		return this.g;
 	}
