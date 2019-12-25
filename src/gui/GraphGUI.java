@@ -24,26 +24,48 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	private graph g;
 	private int mc;
 
+	/**
+	 * Empty constructor
+	 */
 	public GraphGUI() {
 		this.g = new DGraph(20);
 		this.mc = this.g.getMC();
 		initGUI(700, 700);
 	}
 
+	/**
+	 * Constructor with params
+	 * @param width
+	 * @param height
+	 * @param g
+	 */
 	public GraphGUI(int width, int height, graph g) {
 		this.g = g;
 		this.mc = g.getMC();
 		initGUI(width, height);
 	}
 
+	/**
+	 * Getter for the graph
+	 * @return
+	 */
 	public graph getG() {
 		return this.g;
 	}
 
+	/**
+	 * Getter for mc
+	 * @return
+	 */
 	public int getMc() {
 		return this.mc;
 	}
 
+	/**
+	 * Function to init the gui object
+	 * @param width
+	 * @param height
+	 */
 	private void initGUI(int width, int height) {
 		this.setSize(width,height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,12 +73,19 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		this.initMcThread();
 	}
 
+	/**
+	 * Function to draw the graph on the JFrame
+	 */
 	public void paint(Graphics g) {
 		super.paint(g);
 		this.drawGraph(g);
 	}
 	
-	public void initMcThread() {
+	/**
+	 * Function to init mc thread 
+	 * This thread is listening to changes on the graph (by mc value)
+	 */
+	private void initMcThread() {
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -73,6 +102,10 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		t.start();
 	}
 	
+	/**
+	 * Function that draw the graph with his nodes and edges
+	 * @param g1
+	 */
 	private void drawGraph(Graphics g1) {
 		Graphics2D g = (Graphics2D)g1;
 		for (node_data src : this.g.getV()) {
@@ -160,39 +193,5 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 //			repaint();
 //		}
 //		
-//	}
-//
-//	@Override
-//	public void mouseClicked(MouseEvent e) {
-//		System.out.println("mouseClicked");
-//		
-//	}
-//
-//	@Override
-//	public void mousePressed(MouseEvent e) {
-//		int x = e.getX();
-//		int y = e.getY();
-//		Point3D p = new Point3D(x,y);
-//		points.add(p);
-//		repaint();
-//		System.out.println("mousePressed");
-//		
-//	}
-//
-//	@Override
-//	public void mouseReleased(MouseEvent e) {
-//		System.out.println("mouseReleased");
-//		
-//	}
-//
-//	@Override
-//	public void mouseEntered(MouseEvent e) {
-//		System.out.println("mouseEntered");
-//		
-//	}
-//
-//	@Override
-//	public void mouseExited(MouseEvent e) {
-//		System.out.println("mouseExited");
 //	}
 }
