@@ -170,7 +170,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		for (node_data src : this.g.getV()) {
 			Point3D pSrc = src.getLocation();
 			g.setColor(Color.BLUE);
-			g.fillOval(pSrc.ix(), pSrc.iy(), 10, 10);
+			g.fillOval(pSrc.ix(), pSrc.iy() - 3, 10, 10);
 			g.drawString("" + src.getKey(), pSrc.ix(), pSrc.iy() - 3);
 
 			Collection<edge_data> e = this.g.getE(src.getKey());
@@ -191,7 +191,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 						centerX = (centerX + pSrc.ix()) / 2;
 						centerY = (centerY + pSrc.iy()) / 2;
 					}
-					g.setColor(Color.YELLOW);
+					g.setColor(Color.DARK_GRAY);
 					g.fillOval(centerX, centerY, 7, 7);
 				}
 			}
@@ -211,6 +211,11 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		return fd.getDirectory() + fd.getFile();
 	}
 
+	/**
+	 * Function to handle shortest path menu choose
+	 * 
+	 * @param mode
+	 */
 	private void shortestPathGUI(String mode) {
 		String source = JOptionPane.showInputDialog("Please insert source node key");
 		String destination = JOptionPane.showInputDialog("Please insert destination node key");
@@ -241,8 +246,15 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		}
 	}
 
+	/**
+	 * Function to get the path as string from list of nodes
+	 * 
+	 * @param list
+	 * @return
+	 */
 	private static String getPathFromList(List<node_data> list) {
-		if(list == null) return "No path found";
+		if (list == null)
+			return "No path found";
 		String path = "";
 		for (node_data n : list) {
 			path += n.getKey() + ">";
@@ -281,6 +293,9 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 
 	}
 
+	/**
+	 * Override action listener function , to listen the menu clicks
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String str = e.getActionCommand();

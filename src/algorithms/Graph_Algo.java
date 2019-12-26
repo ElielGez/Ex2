@@ -154,10 +154,10 @@ public class Graph_Algo implements graph_algorithms {
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
 		LinkedList<node_data> list = new LinkedList<node_data>();
-		this.shortestPathDist(src, dest);
-		node_data nDest = this.g.getNode(dest);
-		if (nDest.getWeight() == Double.MAX_VALUE)
+		double distance = this.shortestPathDist(src, dest);
+		if (distance == Double.MAX_VALUE)
 			return null;
+		node_data nDest = this.g.getNode(dest);
 		while (nDest.getKey() != src) {
 			list.add(nDest);
 			nDest = this.g.getNode(Integer.parseInt(nDest.getInfo()));
@@ -194,8 +194,19 @@ public class Graph_Algo implements graph_algorithms {
 			if (l == null)
 				return null;
 			list.addAll(l);
-			if (targets.size() - 1 != i + 1)
+		}
+
+		return removeDuplicates(list);
+	}
+
+	private static LinkedList<node_data> removeDuplicates(LinkedList<node_data> list) {
+		for (int i = 0; i < list.size() - 1; i++) {
+			node_data cur = list.get(i);
+			node_data next = list.get(i + 1);
+			if (cur.getKey() == next.getKey()) {
 				list.remove(i + 1);
+			}
+
 		}
 		return list;
 	}
