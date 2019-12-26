@@ -1,9 +1,10 @@
 package dataStructure;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-public class DGraph implements graph {
+public class DGraph implements graph,Serializable {
 
 	/**
 	 * 
@@ -33,7 +34,6 @@ public class DGraph implements graph {
 		this.edges = (LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>>) g.edges.clone();
 		this.mc = g.getMC();
 		this.edgesSize = g.edgeSize();
-
 	}
 
 	/**
@@ -200,20 +200,8 @@ public class DGraph implements graph {
 	/**
 	 * Deep copy function
 	 */
-	@Override
-	public graph copy() {
+	public DGraph copy() {
 		return new DGraph(this);
-	}
-
-	/**
-	 * Function to reset the nodes on the graph , used on algorithms
-	 */
-	@Override
-	public void initNodesGraph() {
-		for (node_data n : this.getV()) {
-			n.initNode();
-		}
-
 	}
 
 }

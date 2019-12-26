@@ -1,5 +1,6 @@
 package testing;
 
+import algorithms.Graph_Algo;
 import dataStructure.DGraph;
 import dataStructure.Node;
 import dataStructure.graph;
@@ -30,10 +31,14 @@ public class GraphGUITest {
 		g.connect(5, 2, 6);
 		g.connect(6, 5, 15);
 		GraphGUI gui = new GraphGUI(1000,1000,g);
-		Thread.sleep(3000);
+		Graph_Algo ga = new Graph_Algo();
+		ga.init(g);
+//		System.out.println(ga.shortestPathDist(1, 2));
+//		Thread.sleep(3000);
 		gui.getG().removeEdge(1, 3);
 		g.addNode(new Node(new Point3D(550,650)));
 		g.connect(6, 7, 15);
+		ga.save("graph3.txt");
 	}
 
 }

@@ -2,6 +2,8 @@ package algorithms;
 
 import java.util.List;
 
+import dataStructure.DGraph;
+import dataStructure.Node;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
@@ -43,7 +45,7 @@ public class Graph_Algo implements graph_algorithms {
 			FileInputStream file = new FileInputStream(file_name);
 			ObjectInputStream in = new ObjectInputStream(file);
 
-			this.g = (graph) in.readObject();
+			init((graph) in.readObject());
 
 			in.close();
 			file.close();
@@ -100,7 +102,7 @@ public class Graph_Algo implements graph_algorithms {
 	@Override
 	public double shortestPathDist(int src, int dest) {
 		try {
-			this.g.initNodesGraph();
+			this.initNodesGraph();
 			node_data nSrc = this.g.getNode(src);
 			nSrc.setWeight(0);
 			while (nSrc.getTag() == 0 && nSrc.getKey() != dest) { // didn't visit this node yet
@@ -119,11 +121,9 @@ public class Graph_Algo implements graph_algorithms {
 				nSrc = getMinimumNode();
 			}
 			return nSrc.getWeight();
-		}
-		catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			System.out.println("Please init the graph with nodes and edges first");
-		}
-		catch (RuntimeException e) {
+		} catch (RuntimeException e) {
 			System.out.println("Invalid src or dest");
 		}
 		return 0;
@@ -131,6 +131,7 @@ public class Graph_Algo implements graph_algorithms {
 
 	/**
 	 * Function to get the minimum node by weight
+	 * 
 	 * @return
 	 */
 	private node_data getMinimumNode() {
@@ -165,6 +166,7 @@ public class Graph_Algo implements graph_algorithms {
 
 	/**
 	 * Function to reverse list
+	 * 
 	 * @param list
 	 * @return
 	 */
@@ -178,14 +180,16 @@ public class Graph_Algo implements graph_algorithms {
 	}
 
 	/**
-	 * Algorithm that computes a relatively short path which visit each node in the targets List
+	 * Algorithm that computes a relatively short path which visit each node in the
+	 * targets List
 	 */
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
-		if(!this.isConnected()) return null;
+		if (!this.isConnected())
+			return null;
 		LinkedList<node_data> list = new LinkedList<node_data>();
 		for (int i = 0; i < targets.size() - 1; i++) {
-			list.addAll(shortestPath(targets.get(i), targets.get(i+1)));
+			list.addAll(shortestPath(targets.get(i), targets.get(i + 1)));
 		}
 		return list;
 	}
@@ -195,15 +199,21 @@ public class Graph_Algo implements graph_algorithms {
 	 */
 	@Override
 	public graph copy() {
-		return this.g.copy();
+		if (this.g instanceof DGraph)
+			return ((DGraph) this.g).copy();
+		return null; // for now support only DGraph , because I can't change the interface..
 	}
-
+	
 	/**
-	 * Getter for the graph
-	 * @return
+	 * Function to reset the nodes on the graph , used on algorithms
 	 */
-	public graph getGraph() {
-		return this.g;
-	}
+	private void initNodesGraph() {
+		for (node_data n : this.g.getV()) {
+			n.setTag(0);
+			n.setInfo("");
+			n.setWeight(Double.MAX_VALUE);
+		}
+
+	} 
 
 }

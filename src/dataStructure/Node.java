@@ -18,6 +18,7 @@ public class Node implements node_data {
 	public Node() {
 		setKey();
 		this.initNode();
+		setLocation(getRandomLocation());
 	}
 	
 	/**
@@ -147,7 +148,6 @@ public class Node implements node_data {
 		setTag(0);
 		setInfo("");
 		setWeight(Double.MAX_VALUE);
-		setLocation(getRandomLocation());
 	}
 
 }
