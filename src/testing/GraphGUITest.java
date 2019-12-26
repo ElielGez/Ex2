@@ -10,10 +10,10 @@ import utils.Point3D;
 public class GraphGUITest {
 
 	public static void main(String[] args) throws InterruptedException {
-		DGraph g = new DGraph();
-		GraphGUI gui = new GraphGUI(1000,1000,g);
-//		Graph_Algo ga = new Graph_Algo();
-//		ga.init("graph1.txt");
+//		DGraph g = new DGraph();
+		Graph_Algo ga = new Graph_Algo();
+		ga.init("graph2.txt");
+		GraphGUI gui = new GraphGUI(1000,1000,ga.copy());
 //		System.out.println(ga.shortestPathDist(1, 2));
 //		Thread.sleep(3000);
 //		gui.getG().removeEdge(1, 3);

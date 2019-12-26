@@ -83,8 +83,9 @@ public class Graph_Algo implements graph_algorithms {
 	@Override
 	public boolean isConnected() {
 		Collection<node_data> c = this.g.getV();
-		if(c.isEmpty()) return false;
-		
+		if (c.isEmpty())
+			return false;
+
 		for (node_data src : c) {
 			for (node_data dest : c) {
 				if (shortestPathDist(src.getKey(), dest.getKey()) == Double.MAX_VALUE)
@@ -155,6 +156,8 @@ public class Graph_Algo implements graph_algorithms {
 		LinkedList<node_data> list = new LinkedList<node_data>();
 		this.shortestPathDist(src, dest);
 		node_data nDest = this.g.getNode(dest);
+		if (nDest.getWeight() == Double.MAX_VALUE)
+			return null;
 		while (nDest.getKey() != src) {
 			list.add(nDest);
 			nDest = this.g.getNode(Integer.parseInt(nDest.getInfo()));
@@ -185,11 +188,14 @@ public class Graph_Algo implements graph_algorithms {
 	 */
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
-		if (!this.isConnected())
-			return null;
 		LinkedList<node_data> list = new LinkedList<node_data>();
 		for (int i = 0; i < targets.size() - 1; i++) {
-			list.addAll(shortestPath(targets.get(i), targets.get(i + 1)));
+			List<node_data> l = shortestPath(targets.get(i), targets.get(i + 1));
+			if (l == null)
+				return null;
+			list.addAll(l);
+			if (targets.size() - 1 != i + 1)
+				list.remove(i + 1);
 		}
 		return list;
 	}
@@ -203,7 +209,7 @@ public class Graph_Algo implements graph_algorithms {
 			return ((DGraph) this.g).copy();
 		return null; // for now support only DGraph , because I can't change the interface..
 	}
-	
+
 	/**
 	 * Function to reset the nodes on the graph , used on algorithms
 	 */
@@ -214,6 +220,6 @@ public class Graph_Algo implements graph_algorithms {
 			n.setWeight(Double.MAX_VALUE);
 		}
 
-	} 
+	}
 
 }

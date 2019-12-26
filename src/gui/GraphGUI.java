@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -38,6 +39,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	private static final String SHORTEST_PATH_DISTANCE = "Shortest Path Distance";
 	private static final String SHORTEST_PATH = "Shortest Path";
 	private static final String IS_CONNECTED = "Graph connected?";
+	private static final String TSP = "TSP";
 
 	/**
 	 * Empty constructor
@@ -116,12 +118,15 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		sp.addActionListener(this);
 		MenuItem ic = new MenuItem(IS_CONNECTED);
 		ic.addActionListener(this);
+		MenuItem tsp = new MenuItem(TSP);
+		tsp.addActionListener(this);
 
 		file.add(save);
 		file.add(load);
 		algo.add(spd);
 		algo.add(sp);
 		algo.add(ic);
+		algo.add(tsp);
 
 		this.addMouseListener(this);
 	}
@@ -226,19 +231,24 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					JOptionPane.showMessageDialog(null, "There is no path between this nodes");
 				else
 					JOptionPane.showMessageDialog(null, "The shortest path distance is : " + result);
-			}
-			else if(mode == "LIST") {
+			} else if (mode == "LIST") {
 				List<node_data> list = this.ga.shortestPath(src, dest);
-				String path = "";
-				for (node_data n : list) {
-					path += n.getKey() + ">";
-				}
-				path = path.substring(0 ,path.length() - 1);
-				JOptionPane.showMessageDialog(null, "The path is : " + path);
+
+				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 			}
 		} catch (NumberFormatException ex) {
 			System.out.println("Please insert numbers only :" + ex);
 		}
+	}
+
+	private static String getPathFromList(List<node_data> list) {
+		if(list == null) return "No path found";
+		String path = "";
+		for (node_data n : list) {
+			path += n.getKey() + ">";
+		}
+		path = path.substring(0, path.length() - 1);
+		return path;
 	}
 
 	@Override
@@ -297,6 +307,25 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		}
 		case IS_CONNECTED: {
 			JOptionPane.showMessageDialog(null, this.ga.isConnected() ? "True" : "False");
+			break;
+		}
+		case TSP: {
+			String s = JOptionPane.showInputDialog("Please insert amount of targets");
+			int amount;
+			try {
+				amount = Integer.parseInt(s);
+				List<Integer> targets = new LinkedList<Integer>();
+				for (int i = 1; i <= amount; i++) {
+					String numStr = JOptionPane.showInputDialog("Please insert target #" + i);
+					int num = Integer.parseInt(numStr);
+					targets.add(num);
+				}
+				List<node_data> list = this.ga.TSP(targets);
+				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
+
+			} catch (NumberFormatException ex) {
+				System.out.println("Please insert numbers only :" + ex);
+			}
 			break;
 		}
 
