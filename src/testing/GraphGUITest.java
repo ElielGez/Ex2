@@ -13,7 +13,7 @@ public class GraphGUITest {
 		DGraph g = new DGraph();
 		GraphGUI gui = new GraphGUI(1000,1000,g);
 //		Graph_Algo ga = new Graph_Algo();
-//		ga.init(g);
+//		ga.init("graph1.txt");
 //		System.out.println(ga.shortestPathDist(1, 2));
 //		Thread.sleep(3000);
 //		gui.getG().removeEdge(1, 3);

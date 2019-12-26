@@ -82,8 +82,11 @@ public class Graph_Algo implements graph_algorithms {
 	 */
 	@Override
 	public boolean isConnected() {
-		for (node_data src : this.g.getV()) {
-			for (node_data dest : this.g.getV()) {
+		Collection<node_data> c = this.g.getV();
+		if(c.isEmpty()) return false;
+		
+		for (node_data src : c) {
+			for (node_data dest : c) {
 				if (shortestPathDist(src.getKey(), dest.getKey()) == Double.MAX_VALUE)
 					return false;
 				if (shortestPathDist(dest.getKey(), src.getKey()) == Double.MAX_VALUE)

@@ -16,7 +16,10 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Collection;
+import java.util.List;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import algorithms.Graph_Algo;
 import dataStructure.DGraph;
@@ -33,6 +36,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	private static final String SAVE = "Save";
 	private static final String LOAD = "Load";
 	private static final String SHORTEST_PATH_DISTANCE = "Shortest Path Distance";
+	private static final String SHORTEST_PATH = "Shortest Path";
+	private static final String IS_CONNECTED = "Graph connected?";
 
 	/**
 	 * Empty constructor
@@ -52,6 +57,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	 * @param g
 	 */
 	public GraphGUI(int width, int height, graph g) {
+		if (g == null)
+			throw new RuntimeException("graph cannot be null");
 		this.g = g;
 		this.mc = g.getMC();
 		this.ga.init(this.g);
@@ -105,10 +112,16 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 
 		MenuItem spd = new MenuItem(SHORTEST_PATH_DISTANCE);
 		spd.addActionListener(this);
+		MenuItem sp = new MenuItem(SHORTEST_PATH);
+		sp.addActionListener(this);
+		MenuItem ic = new MenuItem(IS_CONNECTED);
+		ic.addActionListener(this);
 
 		file.add(save);
 		file.add(load);
 		algo.add(spd);
+		algo.add(sp);
+		algo.add(ic);
 
 		this.addMouseListener(this);
 	}
@@ -179,8 +192,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			}
 		}
 	}
-	
-	private String loadSaveDialog(String text,int mode) {
+
+	private String loadSaveDialog(String text, int mode) {
 		FileDialog fd = new FileDialog(this, text, mode);
 		fd.setFile("*.txt");
 		fd.setFilenameFilter(new FilenameFilter() {
@@ -191,6 +204,41 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		});
 		fd.setVisible(true);
 		return fd.getDirectory() + fd.getFile();
+	}
+
+	private void shortestPathGUI(String mode) {
+		String source = JOptionPane.showInputDialog("Please insert source node key");
+		String destination = JOptionPane.showInputDialog("Please insert destination node key");
+		int src, dest;
+		try {
+			src = Integer.parseInt(source);
+			dest = Integer.parseInt(destination);
+			node_data nSrc = this.g.getNode(src);
+			if (nSrc == null)
+				throw new RuntimeException("No such source node exist , key: " + src);
+			node_data nDest = this.g.getNode(dest);
+			if (nDest == null)
+				throw new RuntimeException("No such destination node exist , key: " + src);
+
+			if (mode == "DISTANCE") {
+				double result = this.ga.shortestPathDist(src, dest);
+				if (result == Double.MAX_VALUE)
+					JOptionPane.showMessageDialog(null, "There is no path between this nodes");
+				else
+					JOptionPane.showMessageDialog(null, "The shortest path distance is : " + result);
+			}
+			else if(mode == "LIST") {
+				List<node_data> list = this.ga.shortestPath(src, dest);
+				String path = "";
+				for (node_data n : list) {
+					path += n.getKey() + ">";
+				}
+				path = path.substring(0 ,path.length() - 1);
+				JOptionPane.showMessageDialog(null, "The path is : " + path);
+			}
+		} catch (NumberFormatException ex) {
+			System.out.println("Please insert numbers only :" + ex);
+		}
 	}
 
 	@Override
@@ -237,6 +285,18 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			this.ga.init(pathname);
 			this.g = this.ga.copy();
 			repaint();
+			break;
+		}
+		case SHORTEST_PATH_DISTANCE: {
+			this.shortestPathGUI("DISTANCE");
+			break;
+		}
+		case SHORTEST_PATH: {
+			this.shortestPathGUI("LIST");
+			break;
+		}
+		case IS_CONNECTED: {
+			JOptionPane.showMessageDialog(null, this.ga.isConnected() ? "True" : "False");
 			break;
 		}
 
