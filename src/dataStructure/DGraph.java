@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 
-public class DGraph implements graph,Serializable {
+public class DGraph implements graph, Serializable {
 
 	/**
 	 * 
@@ -22,10 +22,13 @@ public class DGraph implements graph,Serializable {
 	public DGraph() {
 		this.vertices = new LinkedHashMap<Integer, node_data>();
 		this.edges = new LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>>();
+		this.mc = 0;
+		this.edgesSize = 0;
 	}
 
 	/**
 	 * Deep copy constructor
+	 * 
 	 * @param g
 	 */
 	@SuppressWarnings("unchecked")
@@ -38,6 +41,7 @@ public class DGraph implements graph,Serializable {
 
 	/**
 	 * Constructor to create fast nodes
+	 * 
 	 * @param vertices
 	 */
 	public DGraph(int vertices) {
@@ -120,10 +124,10 @@ public class DGraph implements graph,Serializable {
 		LinkedHashMap<Integer, edge_data> e = this.edges.remove(key);
 		node_data n = this.vertices.remove(key);
 
-		if (e.values() != null && n != null)
+		if ((e != null && e.values() != null) && n != null)
 			this.mc++;
 
-		if (e.values() != null)
+		if (e != null && e.values() != null)
 			this.edgesSize -= e.size();
 
 		return n;
@@ -135,7 +139,13 @@ public class DGraph implements graph,Serializable {
 	 */
 	@Override
 	public edge_data removeEdge(int src, int dest) {
-		edge_data e = this.edges.get(src).remove(dest);
+		LinkedHashMap<Integer, edge_data> hp = this.edges.get(src);
+		if (hp == null) {
+			System.out.println("No edges from this source : " + src);
+			return null;
+		}
+
+		edge_data e = hp.remove(dest);
 		if (e != null) {
 			this.edgesSize--;
 			this.mc++;
@@ -161,8 +171,7 @@ public class DGraph implements graph,Serializable {
 	}
 
 	/**
-	 * Getter for mc
-	 * Mc is the param to count how much changes made on this graph
+	 * Getter for mc Mc is the param to count how much changes made on this graph
 	 */
 	@Override
 	public int getMC() {
@@ -171,6 +180,7 @@ public class DGraph implements graph,Serializable {
 
 	/**
 	 * Function to print vertices of the graph only
+	 * 
 	 * @return
 	 */
 	public String verticesString() {

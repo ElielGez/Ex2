@@ -10,7 +10,7 @@ public class Node implements node_data {
 	private double weight;
 	private String info;
 	private int tag;
-	static int uuid = 1;
+	private static int uuid = 1;
 
 	/**
 	 * Empty constructor
@@ -148,6 +148,14 @@ public class Node implements node_data {
 		setTag(0);
 		setInfo("");
 		setWeight(Double.MAX_VALUE);
+	}
+	
+	/**
+	 * THIS FUNCTION IS HERE FOR TESTING ONLY !!
+	 * DON'T USE !!
+	 */
+	public static void resetUUID() {
+		uuid = 1;
 	}
 
 }
