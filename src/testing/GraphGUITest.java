@@ -3,7 +3,9 @@ package testing;
 import algorithms.Graph_Algo;
 import dataStructure.DGraph;
 import dataStructure.Node;
+import dataStructure.edge_data;
 import dataStructure.graph;
+import dataStructure.node_data;
 import gui.GraphGUI;
 import utils.Point3D;
 

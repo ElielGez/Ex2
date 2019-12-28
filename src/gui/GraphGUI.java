@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 
 import algorithms.Graph_Algo;
 import dataStructure.DGraph;
+import dataStructure.Node;
 import dataStructure.edge_data;
 import dataStructure.graph;
 import dataStructure.node_data;
@@ -40,6 +41,10 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	private static final String SHORTEST_PATH = "Shortest Path";
 	private static final String IS_CONNECTED = "Graph connected?";
 	private static final String TSP = "TSP";
+	private static final String ADD_NODE = "Add node";
+	private static final String RM_NODE = "Remove node";
+	private static final String ADD_EDGE = "Add edge";
+	private static final String RM_EDGE = "Remove edge";
 
 	/**
 	 * Empty constructor
@@ -103,8 +108,12 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		MenuBar menuBar = new MenuBar();
 		Menu file = new Menu("File");
 		Menu algo = new Menu("Algorithms");
+		Menu node = new Menu("Node");
+		Menu edge = new Menu("Edge");
 		menuBar.add(file);
 		menuBar.add(algo);
+		menuBar.add(node);
+		menuBar.add(edge);
 		this.setMenuBar(menuBar);
 
 		MenuItem save = new MenuItem(SAVE);
@@ -121,12 +130,26 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		MenuItem tsp = new MenuItem(TSP);
 		tsp.addActionListener(this);
 
+		MenuItem nAdd = new MenuItem(ADD_NODE);
+		nAdd.addActionListener(this);
+		MenuItem nRm = new MenuItem(RM_NODE);
+		nRm.addActionListener(this);
+
+		MenuItem eAdd = new MenuItem(ADD_EDGE);
+		eAdd.addActionListener(this);
+		MenuItem eRm = new MenuItem(RM_EDGE);
+		eRm.addActionListener(this);
+
 		file.add(save);
 		file.add(load);
 		algo.add(spd);
 		algo.add(sp);
 		algo.add(ic);
 		algo.add(tsp);
+		node.add(nAdd);
+		node.add(nRm);
+		edge.add(eAdd);
+		edge.add(eRm);
 
 		this.addMouseListener(this);
 	}
@@ -176,21 +199,23 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			if (e != null) {
 				for (edge_data edge : e) {
 					node_data dest = this.g.getNode(edge.getDest());
-					Point3D pDest = dest.getLocation();
-					g.setColor(Color.RED);
-					g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
+					if (dest != null) {
+						Point3D pDest = dest.getLocation();
+						g.setColor(Color.RED);
+						g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
 
-					g.setColor(Color.DARK_GRAY);
-					g.setFont(new Font("Arial", Font.BOLD, 15));
-					int centerX = (pSrc.ix() + pDest.ix()) / 2;
-					int centerY = (pSrc.iy() + pDest.iy()) / 2;
-					g.drawString("" + edge.getWeight(), centerX, centerY);
-					for (int i = 0; i < 2; i++) {
-						centerX = (centerX + pSrc.ix()) / 2;
-						centerY = (centerY + pSrc.iy()) / 2;
+						g.setColor(Color.DARK_GRAY);
+						g.setFont(new Font("Arial", Font.BOLD, 15));
+						int centerX = (pSrc.ix() + pDest.ix()) / 2;
+						int centerY = (pSrc.iy() + pDest.iy()) / 2;
+						g.drawString("" + edge.getWeight(), centerX, centerY);
+						for (int i = 0; i < 2; i++) {
+							centerX = (centerX + pSrc.ix()) / 2;
+							centerY = (centerY + pSrc.iy()) / 2;
+						}
+						g.setColor(Color.DARK_GRAY);
+						g.fillOval(centerX, centerY - 3, 7, 7);
 					}
-					g.setColor(Color.DARK_GRAY);
-					g.fillOval(centerX, centerY - 3, 7, 7);
 				}
 			}
 		}
@@ -269,7 +294,10 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
+		int x = e.getX();
+		int y = e.getY();
+		g.addNode(new Node(new Point3D(x, y)));
+		repaint();
 
 	}
 
@@ -336,6 +364,64 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				List<node_data> list = this.ga.TSP(targets);
 				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 
+			} catch (NumberFormatException ex) {
+				System.out.println("Please insert numbers only :" + ex);
+			}
+			break;
+		}
+		case ADD_NODE: {
+			JOptionPane.showMessageDialog(null, "For adding new node , just click on the window to place new node");
+			break;
+		}
+		case RM_NODE: {
+			String answer = JOptionPane.showInputDialog("Please insert key to remove");
+			int key;
+			try {
+				key = Integer.parseInt(answer);
+				node_data n = g.removeNode(key);
+				if (n == null)
+					JOptionPane.showMessageDialog(null, "No such node exist");
+				else {
+					repaint();
+					JOptionPane.showMessageDialog(null, "The node removed!");
+				}
+
+			} catch (NumberFormatException ex) {
+				System.out.println("Please insert numbers only :" + ex);
+			}
+			break;
+		}
+		case ADD_EDGE: {
+			String asrc = JOptionPane.showInputDialog("Please insert source node");
+			String adest = JOptionPane.showInputDialog("Please insert destination node");
+			String aweight = JOptionPane.showInputDialog("Please insert weight");
+			int src, dest;
+			double w;
+			try {
+				src = Integer.parseInt(asrc);
+				dest = Integer.parseInt(adest);
+				w = Double.parseDouble(aweight);
+				g.connect(src, dest, w);
+				repaint();
+			} catch (NumberFormatException ex) {
+				System.out.println("Please insert numbers only :" + ex);
+			}
+			break;
+		}
+		case RM_EDGE: {
+			String asrc = JOptionPane.showInputDialog("Please insert source node");
+			String adest = JOptionPane.showInputDialog("Please insert destination node");
+			int src, dest;
+			try {
+				src = Integer.parseInt(asrc);
+				dest = Integer.parseInt(adest);
+				edge_data edge = g.removeEdge(src, dest);
+				if (edge == null)
+					JOptionPane.showMessageDialog(null, "No such edge exist");
+				else {
+					repaint();
+					JOptionPane.showMessageDialog(null, "The edge removed!");
+				}
 			} catch (NumberFormatException ex) {
 				System.out.println("Please insert numbers only :" + ex);
 			}
