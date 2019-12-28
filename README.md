@@ -22,6 +22,12 @@ and run algorithms on the graph.
 		- Shortest Path: get directions of the shortest path between 2 nodes (if path exist)
 		- Graph connected?: check if the graph have strong conncetion
 		- TSP: check if have path between targets of nodes
+	- Node
+		- Add node: For adding new node , just click on the window to place new node
+		- Remove node: insert key on node to remove
+	- Edge
+		- Add edge: insert src key , dest key and weight to connect with edge between nodes
+		- Remove edge : insert src key and dest key to remove edge
 	
 ## Examples:
 
