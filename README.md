@@ -25,34 +25,70 @@ and run algorithms on the graph.
 	
 ## Examples:
 
-#### Monom Class:
+#### Node Class:
 ```
-Monom m = new Monom("5x^3");
-double fx = m.f(1); //f(1) = 5 
-```
-
-#### Polynom Class:
-```
-Polynom p = new Polynom("-x+6-x^2");
-double fx = p.f(3); //f(3) = -6
+Node n = new Node();
 ```
 
-#### ComplexFunction Class:
+#### Edge Class:
 ```
-String s = "mul(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)";
-function f = new ComplexFunction().initFromString(s);
-```
-
-#### Drawing functions on graph:
-```
-Functions_GUI fg = new Functions_GUI();
-String s = "mul(plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0),-1.0x^4+2.4x^2+3.1)";
-function f = new ComplexFunction().initFromString(s);
-fg.add(f);
-int w=1000, h=600, res=200;
-Range rx = new Range(-10,10);
-Range ry = new Range(-5,15);
-fg.drawFunctions(w,h,rx,ry,res);
+int src = 1;
+int dest = 2;
+double weight = 5.3;
+Edge e = new Edge(src,dest,weight);
 ```
 
+#### DGraph Class:
+```
+DGraph d = new DGraph();
+d.addNode(new Node()); // key 1
+d.addNode(new Node()); // key 2
+int src = 1;
+int dest = 2;
+double weight = 5.3;
+d.connect(src,dest,weight);
+```
+
+#### Graph_Algo Class:
+```
+graph g = new DGraph(d); // copy d graph
+Graph_Algo ga = new Graph_Algo();
+ga.init(g); // init the graph
+
+double spd = ga.shortestPathDist(1,2);
+
+List<node_data> l = ga.shortestPath(1,2);
+
+boolean flag = ga.isConnected();
+
+LinkedList<Integer> targets = new LinkedList<Integer>();
+targets.add(1);
+targets.add(4);
+targets.add(3);
+targets.add(2);
+List<node_data> l2 = ga.TSP(targets);
+```
+
+#### GraphGUI Class:
+```
+DGraph g = new DGraph();
+g.addNode(new Node(new Point3D(30, 500)));
+g.addNode(new Node(new Point3D(270, 80)));
+g.addNode(new Node(new Point3D(50, 100)));
+g.addNode(new Node(new Point3D(250, 250)));
+g.addNode(new Node(new Point3D(500, 250)));
+g.addNode(new Node(new Point3D(450, 550)));
+g.connect(1, 3, 14);
+g.connect(1, 4, 9);
+g.connect(1, 6, 7);
+g.connect(3, 2, 9);
+g.connect(3, 4, 2);
+g.connect(4, 1, 2);
+g.connect(4, 3, 2);
+g.connect(4, 5, 11);
+g.connect(4, 6, 10);
+g.connect(5, 2, 6);
+g.connect(6, 5, 15);
+GraphGUI gui = new GraphGUI(1000, 1000, g);
+```
 ### **NOTE: More details about classes and interfaces of the project can be found on Wiki**
