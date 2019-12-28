@@ -3,7 +3,6 @@ package testing;
 import dataStructure.DGraph;
 import dataStructure.Node;
 import dataStructure.edge_data;
-import dataStructure.graph;
 import dataStructure.node_data;
 
 import static org.junit.Assert.assertTrue;
@@ -12,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -107,10 +105,8 @@ public class DGraphTest {
 				d.connect(n.getKey(), (n.getKey() + i) % million + 1, i * 5);
 			}
 		}
-		System.out.println(d.edgeSize());
 		long end = System.currentTimeMillis();
 		long seconds = TimeUnit.MILLISECONDS.toSeconds(end - start);
-		System.out.println(seconds);
 		assertTrue(seconds <= 10);
 	}
 

@@ -165,13 +165,12 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	 * 
 	 * @param g1
 	 */
-	private void drawGraph(Graphics g1) {
-		Graphics2D g = (Graphics2D) g1;
+	private void drawGraph(Graphics g) {
 		for (node_data src : this.g.getV()) {
 			Point3D pSrc = src.getLocation();
 			g.setColor(Color.BLUE);
-			g.fillOval(pSrc.ix(), pSrc.iy() - 3, 10, 10);
-			g.drawString("" + src.getKey(), pSrc.ix(), pSrc.iy() - 3);
+			g.fillOval(pSrc.ix(), pSrc.iy() - 5, 10, 10);
+			g.drawString("" + src.getKey(), pSrc.ix(), pSrc.iy() - 5);
 
 			Collection<edge_data> e = this.g.getE(src.getKey());
 			if (e != null) {
@@ -179,7 +178,6 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					node_data dest = this.g.getNode(edge.getDest());
 					Point3D pDest = dest.getLocation();
 					g.setColor(Color.RED);
-					g.setStroke(new BasicStroke(3));
 					g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
 
 					g.setColor(Color.DARK_GRAY);
@@ -192,7 +190,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 						centerY = (centerY + pSrc.iy()) / 2;
 					}
 					g.setColor(Color.DARK_GRAY);
-					g.fillOval(centerX, centerY, 7, 7);
+					g.fillOval(centerX, centerY - 3, 7, 7);
 				}
 			}
 		}
