@@ -96,19 +96,20 @@ public class DGraphTest {
 	}
 
 	@Test
-	void performance() throws InterruptedException {
+	void performance() {
 		long start = System.currentTimeMillis();
-		//code here
+		// code here
+		Node.resetUUID();
 		int million = 1000000;
 		d = new DGraph(million);
 		for (node_data n : d.getV()) {
 			for (int i = 1; i <= 10; i++) {
-				d.connect(n.getKey(), n.getKey() + i, i * 5);
+				d.connect(n.getKey(), (n.getKey() + i) % million + 1, i * 5);
 			}
 		}
 		System.out.println(d.edgeSize());
 		long end = System.currentTimeMillis();
-		long seconds = TimeUnit.MILLISECONDS.toSeconds(end-start);
+		long seconds = TimeUnit.MILLISECONDS.toSeconds(end - start);
 		System.out.println(seconds);
 		assertTrue(seconds <= 10);
 	}
