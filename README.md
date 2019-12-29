@@ -23,7 +23,7 @@ and run algorithms on the graph.
 		- Graph connected?: check if the graph have strong conncetion
 		- TSP: check if have path between targets of nodes
 	- Node
-		- Add node: For adding new node , just click on the window to place new node
+		- Add node: For adding new node , just double click on the window to place new node
 		- Remove node: insert key on node to remove
 	- Edge
 		- Add edge: insert src key , dest key and weight to connect with edge between nodes
