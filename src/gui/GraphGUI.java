@@ -294,10 +294,12 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		int x = e.getX();
-		int y = e.getY();
-		g.addNode(new Node(new Point3D(x, y)));
-		repaint();
+		if (e.getClickCount() == 2) {
+			int x = e.getX();
+			int y = e.getY();
+			g.addNode(new Node(new Point3D(x, y)));
+			repaint();
+		}
 
 	}
 
@@ -370,7 +372,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			break;
 		}
 		case ADD_NODE: {
-			JOptionPane.showMessageDialog(null, "For adding new node , just click on the window to place new node");
+			JOptionPane.showMessageDialog(null, "For adding new node , just double click on the window to place new node");
 			break;
 		}
 		case RM_NODE: {
