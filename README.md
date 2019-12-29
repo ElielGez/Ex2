@@ -1,6 +1,8 @@
 # Ariel OOP - Ex2 The Maze of Waze
 
-![graph1](https://github.com/ElielGez/Ex2/blob/master/images_examples/Capture.JPG)
+<p align="center">
+  <img alt="graph" src="https://github.com/ElielGez/Ex2/blob/master/images_examples/Capture.JPG">
+</p>
 
 ## Introduction:
 This project is part of assignment in Ariel University.
