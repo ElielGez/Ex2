@@ -6,6 +6,7 @@
 
 ## Introduction:
 This project is part of assignment in Ariel University.
+
 Main purpose of the project is to:
 * Create directed weighted graph
 * Display the graph on graphic user interface , 
