@@ -6,8 +6,10 @@
 
 ## Introduction:
 This project is part of assignment in Ariel University.
-Main purpose of the project is to create directed weighted graph and display it on graphic user interface , 
-and run algorithms on the graph.
+Main purpose of the project is to:
+* Create directed weighted graph
+* Display the graph on graphic user interface , 
+* Run algorithms on the graph.
 
 ## How to use GUI
 
