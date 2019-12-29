@@ -201,11 +201,11 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					node_data dest = this.g.getNode(edge.getDest());
 					if (dest != null) {
 						Point3D pDest = dest.getLocation();
-						g.setColor(Color.RED);
+						g.setColor(Color.DARK_GRAY);
 						g.drawLine(pSrc.ix(), pSrc.iy(), pDest.ix(), pDest.iy());
 
-						g.setColor(Color.DARK_GRAY);
-						g.setFont(new Font("Arial", Font.BOLD, 15));
+						g.setColor(Color.RED);
+						g.setFont(new Font("Arial", 1, 15));
 						int centerX = (pSrc.ix() + pDest.ix()) / 2;
 						int centerY = (pSrc.iy() + pDest.iy()) / 2;
 						g.drawString("" + edge.getWeight(), centerX, centerY);
@@ -213,7 +213,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 							centerX = (centerX + pSrc.ix()) / 2;
 							centerY = (centerY + pSrc.iy()) / 2;
 						}
-						g.setColor(Color.DARK_GRAY);
+						g.setColor(new Color(255,196,30));
 						g.fillOval(centerX, centerY - 3, 7, 7);
 					}
 				}

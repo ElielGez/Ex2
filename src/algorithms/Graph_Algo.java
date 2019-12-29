@@ -158,6 +158,7 @@ public class Graph_Algo implements graph_algorithms {
 		if (distance == Double.MAX_VALUE)
 			return null;
 		node_data nDest = this.g.getNode(dest);
+		if(nDest == null) return null;
 		while (nDest.getKey() != src) {
 			list.add(nDest);
 			nDest = this.g.getNode(Integer.parseInt(nDest.getInfo()));
