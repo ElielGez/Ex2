@@ -7,7 +7,9 @@ import dataStructure.node_data;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
+import java.time.Duration;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
@@ -95,19 +97,16 @@ public class DGraphTest {
 
 	@Test
 	void performance() {
-		long start = System.currentTimeMillis();
-		// code here
-		Node.resetUUID();
-		int million = 1000000;
-		d = new DGraph(million);
-		for (node_data n : d.getV()) {
-			for (int i = 1; i <= 10; i++) {
-				d.connect(n.getKey(), (n.getKey() + i) % million + 1, i * 5);
+		assertTimeout(Duration.ofMillis(10000), () -> {
+			Node.resetUUID();
+			int million = 1000000;
+			d = new DGraph(million);
+			for (node_data n : d.getV()) {
+				for (int i = 1; i <= 10; i++) {
+					d.connect(n.getKey(), (n.getKey() + i) % million + 1, i * 5);
+				}
 			}
-		}
-		long end = System.currentTimeMillis();
-		long seconds = TimeUnit.MILLISECONDS.toSeconds(end - start);
-		assertTrue(seconds <= 10);
+		});
 	}
 
 	/** ------------- UTILS FUNCTIONS ------------ **/
