@@ -1,12 +1,12 @@
-package Ex1Testing;
+package test.java.Ex1;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
 
-import Ex1.Monom;
-import Ex1.Polynom;
-import Ex1.Polynom_able;
+import main.java.Ex1.Monom;
+import main.java.Ex1.Polynom;
+import main.java.Ex1.Polynom_able;
 
 class PolynomTest {
 

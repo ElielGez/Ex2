@@ -1,7 +1,7 @@
-package Ex1Testing;
+package test.java.Ex1;
 
 import static org.junit.jupiter.api.Assertions.*;
-import Ex1.Monom;
+import main.java.Ex1.Monom;
 import org.junit.jupiter.api.Test;
 
 /**
