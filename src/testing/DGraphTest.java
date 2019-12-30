@@ -22,7 +22,6 @@ public class DGraphTest {
 
 	@BeforeEach
 	void buildGraph() {
-		Node.resetUUID();
 		d = new DGraph(initNodeSize);
 	}
 
@@ -34,8 +33,8 @@ public class DGraphTest {
 	@Test
 	void addNodes() {
 		int add = 5;
-		for (int i = 0; i < add; i++) {
-			node_data n = new Node();
+		for (int i = initNodeSize + 1; i <= add + initNodeSize; i++) {
+			node_data n = new Node(i);
 			d.addNode(n);
 		}
 		assertEquals(initNodeSize + add, d.nodeSize());
@@ -98,7 +97,6 @@ public class DGraphTest {
 	@Test
 	void performance() {
 		assertTimeout(Duration.ofMillis(10000), () -> {
-			Node.resetUUID();
 			int million = 1000000;
 			d = new DGraph(million);
 			for (node_data n : d.getV()) {

@@ -1,6 +1,5 @@
 package dataStructure;
 
-import java.util.Random;
 
 import utils.Point3D;
 
@@ -10,13 +9,19 @@ public class Node implements node_data {
 	private double weight;
 	private String info;
 	private int tag;
-	private static int uuid = 1;
 
 	/**
 	 * Empty constructor
 	 */
 	public Node() {
-		setKey();
+		
+	}
+	/**
+	 * Constructor that gets key
+	 * @param key
+	 */
+	public Node(int key) {
+		this.key = key;
 		this.initNode();
 		setLocation(getRandomLocation());
 	}
@@ -37,8 +42,8 @@ public class Node implements node_data {
 	 * Constructor with location
 	 * @param location - Point3D location
 	 */
-	public Node(Point3D location) {
-		setKey();
+	public Node(int key,Point3D location) {
+		this.key = key;
 		this.initNode();
 		this.location = new Point3D(location);
 	}
@@ -49,14 +54,6 @@ public class Node implements node_data {
 	@Override
 	public int getKey() {
 		return this.key;
-	}
-
-	/**
-	 * Setter for key , using static uuid field
-	 */
-	private void setKey() {
-		this.key = uuid;
-		uuid++;
 	}
 
 	/**
@@ -136,8 +133,8 @@ public class Node implements node_data {
 	 * @return
 	 */
 	private static Point3D getRandomLocation() {
-		int randomX = new Random().nextInt(400);
-		int randomY = new Random().nextInt(400);
+		int randomX = (int) (Math.random() * (850 - 50)) + 50;
+		int randomY = (int) (Math.random() * (750 - 70)) + 70;
 		return new Point3D(randomX,randomY);
 	}
 	
@@ -148,14 +145,6 @@ public class Node implements node_data {
 		setTag(0);
 		setInfo("");
 		setWeight(Double.MAX_VALUE);
-	}
-	
-	/**
-	 * THIS FUNCTION IS HERE FOR TESTING ONLY !!
-	 * DON'T USE !!
-	 */
-	public static void resetUUID() {
-		uuid = 1;
 	}
 
 }

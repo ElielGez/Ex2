@@ -1,11 +1,9 @@
 package gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.FileDialog;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Menu;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
@@ -45,6 +43,8 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	private static final String RM_NODE = "Remove node";
 	private static final String ADD_EDGE = "Add edge";
 	private static final String RM_EDGE = "Remove edge";
+	private final int WIDTH = 1000;
+	private final int HEIGHT = 1000;
 
 	/**
 	 * Empty constructor
@@ -53,7 +53,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		this.g = new DGraph(20);
 		this.mc = this.g.getMC();
 		this.ga.init(this.g);
-		initGUI(700, 700);
+		initGUI(WIDTH, HEIGHT);
 	}
 
 	/**
@@ -63,13 +63,13 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 	 * @param height
 	 * @param g
 	 */
-	public GraphGUI(int width, int height, graph g) {
+	public GraphGUI(graph g) {
 		if (g == null)
 			throw new RuntimeException("graph cannot be null");
 		this.g = g;
 		this.mc = g.getMC();
 		this.ga.init(this.g);
-		initGUI(width, height);
+		initGUI(WIDTH, HEIGHT);
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 							centerX = (centerX + pSrc.ix()) / 2;
 							centerY = (centerY + pSrc.iy()) / 2;
 						}
-						g.setColor(new Color(255,196,30));
+						g.setColor(new Color(255, 196, 30));
 						g.fillOval(centerX, centerY - 3, 7, 7);
 					}
 				}
@@ -286,6 +286,23 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		return path;
 	}
 
+	private void addNode(Point3D p) {
+		String answer = JOptionPane.showInputDialog("Please insert key to add");
+		int key;
+		try {
+			key = Integer.parseInt(answer);
+			node_data n = new Node(key, p);
+			try {
+				g.addNode(n);
+			} catch (ArithmeticException ex) {
+				JOptionPane.showMessageDialog(null, ex.getMessage());
+			}
+
+		} catch (NumberFormatException ex) {
+			System.out.println("Please insert numbers only :" + ex);
+		}
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -297,10 +314,9 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		if (e.getClickCount() == 2) {
 			int x = e.getX();
 			int y = e.getY();
-			g.addNode(new Node(new Point3D(x, y)));
+			addNode(new Point3D(x, y));
 			repaint();
 		}
-
 	}
 
 	@Override
@@ -372,7 +388,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			break;
 		}
 		case ADD_NODE: {
-			JOptionPane.showMessageDialog(null, "For adding new node , just double click on the window to place new node");
+			JOptionPane.showMessageDialog(null, "For adding new node , just double click on the window and insert key");
 			break;
 		}
 		case RM_NODE: {

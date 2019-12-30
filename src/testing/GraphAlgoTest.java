@@ -22,15 +22,14 @@ public class GraphAlgoTest {
 
 	@BeforeEach
 	void createGraph() {
-		Node.resetUUID();
 		g = new DGraph();
 		ga = new Graph_Algo();
-		g.addNode(new Node(new Point3D(30, 500)));
-		g.addNode(new Node(new Point3D(270, 80)));
-		g.addNode(new Node(new Point3D(50, 100)));
-		g.addNode(new Node(new Point3D(250, 250)));
-		g.addNode(new Node(new Point3D(500, 250)));
-		g.addNode(new Node(new Point3D(450, 550)));
+		g.addNode(new Node(1,new Point3D(30, 500)));
+		g.addNode(new Node(2,new Point3D(270, 80)));
+		g.addNode(new Node(3,new Point3D(50, 100)));
+		g.addNode(new Node(4,new Point3D(250, 250)));
+		g.addNode(new Node(5,new Point3D(500, 250)));
+		g.addNode(new Node(6,new Point3D(450, 550)));
 		g.connect(1, 3, 14);
 		g.connect(1, 4, 9);
 		g.connect(1, 6, 7);

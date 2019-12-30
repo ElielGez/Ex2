@@ -46,8 +46,8 @@ public class DGraph implements graph, Serializable {
 	 */
 	public DGraph(int vertices) {
 		this();
-		for (int i = 0; i < vertices; i++) {
-			node_data n = new Node();
+		for (int i = 1; i <= vertices; i++) {
+			node_data n = new Node(i);
 			this.vertices.put(n.getKey(), n);
 		}
 	}
@@ -73,6 +73,9 @@ public class DGraph implements graph, Serializable {
 	 */
 	@Override
 	public void addNode(node_data n) {
+		if(this.getNode(n.getKey()) != null) {
+			throw new ArithmeticException("This node already exists");
+		}
 		this.vertices.put(n.getKey(), n);
 		this.mc++;
 	}

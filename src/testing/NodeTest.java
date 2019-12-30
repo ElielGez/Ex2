@@ -12,7 +12,7 @@ public class NodeTest {
 	static Node n;
 	@BeforeAll
 	static void createNode() {
-		n = new Node();
+		n = new Node(1);
 	}
 	@Test
 	void checkKey() {

@@ -8,6 +8,13 @@ public class Edge implements edge_data {
 	private int tag;
 	
 	/**
+	 * Empty constructor
+	 */
+	public Edge() {
+		
+	}
+	
+	/**
 	 * Constructor with params
 	 * @param src
 	 * @param dest
