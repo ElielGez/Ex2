@@ -1,11 +1,8 @@
-package test.java.Ex1;
+package Ex1;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import main.java.Ex1.ComplexFunction;
-import main.java.Ex1.function;
 
 
 class ComplexFunctionTest {

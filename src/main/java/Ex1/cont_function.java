@@ -1,4 +1,4 @@
-package main.java.Ex1;
+package Ex1;
 
 /**
  * The interface represents a continuance function 

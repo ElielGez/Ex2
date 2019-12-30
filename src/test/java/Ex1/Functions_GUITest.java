@@ -1,17 +1,10 @@
-package test.java.Ex1;
+package Ex1;
 
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
-
-import main.java.Ex1.ComplexFunction;
-import main.java.Ex1.Functions_GUI;
-import main.java.Ex1.Monom;
-import main.java.Ex1.Polynom;
-import main.java.Ex1.Range;
-import main.java.Ex1.function;
 /**
  * Partial JUnit + main test for the GUI_Functions class, expected output from the main:
  * 0) java.awt.Color[r=0,g=0,b=255]  f(x)= plus(-1.0x^4+2.4x^2+3.1,+0.1x^5-1.2999999999999998x+5.0)

@@ -1,7 +1,4 @@
-package main.java.Ex2.dataStructure;
-
-
-import main.java.Ex2.utils.Point3D;
+package Ex2;
 
 public class Node implements node_data {
 	private int key;

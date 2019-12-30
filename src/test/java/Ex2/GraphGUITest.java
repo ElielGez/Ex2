@@ -1,8 +1,4 @@
-package test.java.Ex2;
-
-import main.java.Ex2.dataStructure.DGraph;
-import main.java.Ex2.dataStructure.Node;
-import main.java.Ex2.gui.GraphGUI;
+package Ex2;
 
 public class GraphGUITest {
 

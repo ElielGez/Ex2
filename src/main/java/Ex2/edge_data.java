@@ -1,4 +1,4 @@
-package main.java.Ex2.dataStructure;
+package Ex2;
 
 import java.io.Serializable;
 
