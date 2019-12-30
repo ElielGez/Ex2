@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import java.time.Duration;
 import java.util.Collection;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
