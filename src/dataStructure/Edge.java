@@ -6,28 +6,32 @@ public class Edge implements edge_data {
 	private double weight;
 	private String info;
 	private int tag;
-	
+
 	/**
 	 * Empty constructor
 	 */
 	public Edge() {
-		
+
 	}
-	
+
 	/**
 	 * Constructor with params
+	 * 
 	 * @param src
 	 * @param dest
 	 * @param weight
 	 */
-	public Edge(int src,int dest,double weight) {
+	public Edge(int src, int dest, double weight) {
+		if (weight < 0)
+			throw new ArithmeticException("Weight must be positive");
 		this.src = src;
 		this.dest = dest;
 		this.weight = weight;
 	}
-	
+
 	/**
 	 * Deep copy constructor
+	 * 
 	 * @param e
 	 */
 	public Edge(edge_data e) {
@@ -93,7 +97,7 @@ public class Edge implements edge_data {
 	public void setTag(int t) {
 		this.tag = t;
 	}
-	
+
 	/**
 	 * Override toString
 	 */

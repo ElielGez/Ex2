@@ -264,7 +264,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 
 				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 			}
-		} catch (NumberFormatException ex) {
+		} catch (Exception ex) {
 			System.out.println("Please insert numbers only :" + ex);
 		}
 	}
@@ -298,7 +298,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				JOptionPane.showMessageDialog(null, ex.getMessage());
 			}
 
-		} catch (NumberFormatException ex) {
+		} catch (Exception ex) {
 			System.out.println("Please insert numbers only :" + ex);
 		}
 	}
@@ -382,7 +382,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				List<node_data> list = this.ga.TSP(targets);
 				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 
-			} catch (NumberFormatException ex) {
+			} catch (Exception ex) {
 				System.out.println("Please insert numbers only :" + ex);
 			}
 			break;
@@ -404,7 +404,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					JOptionPane.showMessageDialog(null, "The node removed!");
 				}
 
-			} catch (NumberFormatException ex) {
+			} catch (Exception ex) {
 				System.out.println("Please insert numbers only :" + ex);
 			}
 			break;
@@ -421,7 +421,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				w = Double.parseDouble(aweight);
 				g.connect(src, dest, w);
 				repaint();
-			} catch (NumberFormatException ex) {
+			} catch (Exception ex) {
 				System.out.println("Please insert numbers only :" + ex);
 			}
 			break;
@@ -440,7 +440,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					repaint();
 					JOptionPane.showMessageDialog(null, "The edge removed!");
 				}
-			} catch (NumberFormatException ex) {
+			} catch (Exception ex) {
 				System.out.println("Please insert numbers only :" + ex);
 			}
 			break;
