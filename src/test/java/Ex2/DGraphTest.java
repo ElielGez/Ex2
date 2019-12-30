@@ -1,9 +1,9 @@
-package testing;
+package test.java.Ex2;
 
-import dataStructure.DGraph;
-import dataStructure.Node;
-import dataStructure.edge_data;
-import dataStructure.node_data;
+import main.java.Ex2.dataStructure.DGraph;
+import main.java.Ex2.dataStructure.Node;
+import main.java.Ex2.dataStructure.edge_data;
+import main.java.Ex2.dataStructure.node_data;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;

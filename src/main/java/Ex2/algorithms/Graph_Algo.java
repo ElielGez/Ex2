@@ -1,11 +1,11 @@
-package algorithms;
+package main.java.Ex2.algorithms;
 
 import java.util.List;
 
-import dataStructure.DGraph;
-import dataStructure.edge_data;
-import dataStructure.graph;
-import dataStructure.node_data;
+import main.java.Ex2.dataStructure.DGraph;
+import main.java.Ex2.dataStructure.edge_data;
+import main.java.Ex2.dataStructure.graph;
+import main.java.Ex2.dataStructure.node_data;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

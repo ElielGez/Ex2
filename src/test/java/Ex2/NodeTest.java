@@ -1,12 +1,12 @@
-package testing;
+package test.java.Ex2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import dataStructure.Node;
-import utils.Point3D;
+import main.java.Ex2.dataStructure.Node;
+import main.java.Ex2.utils.Point3D;
 
 public class NodeTest {
 	static Node n;
