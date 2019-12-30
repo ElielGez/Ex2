@@ -31,7 +31,6 @@ public class DGraph implements graph, Serializable {
 	 * 
 	 * @param g
 	 */
-	@SuppressWarnings("unchecked")
 	public DGraph(DGraph g) {
 		this.vertices = (LinkedHashMap<Integer, node_data>) g.vertices.clone();
 		this.edges = (LinkedHashMap<Integer, LinkedHashMap<Integer, edge_data>>) g.edges.clone();
