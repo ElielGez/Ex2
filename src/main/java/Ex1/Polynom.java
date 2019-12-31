@@ -249,6 +249,10 @@ public class Polynom implements Polynom_able {
 			Monom m = it.next();
 			str += m.get_coefficient() >= 0 ? "+" + m : m;
 		}
+//		for (int i = 0; i < this.monoms.size(); i++) {
+//			Monom m = this.monoms.get(i);
+//			str += (m.get_coefficient() >= 0 && i != 0) ? "+" + m : m;
+//		}
 		return str;
 	}
 
