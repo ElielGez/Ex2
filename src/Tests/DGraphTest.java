@@ -1,4 +1,4 @@
-package Ex2;
+package Tests;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,6 +9,11 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import dataStructure.edge_data;
+import dataStructure.DGraph;
+import dataStructure.Node;
+import dataStructure.node_data;
 
 public class DGraphTest {
 	DGraph d;

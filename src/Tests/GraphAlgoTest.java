@@ -1,4 +1,4 @@
-package Ex2;
+package Tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,6 +9,12 @@ import java.util.LinkedList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import algorithms.Graph_Algo;
+import dataStructure.DGraph;
+import dataStructure.Node;
+import dataStructure.graph;
+import utils.Point3D;
 
 public class GraphAlgoTest {
 	Graph_Algo ga;

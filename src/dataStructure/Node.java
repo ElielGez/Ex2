@@ -1,4 +1,6 @@
-package Ex2;
+package dataStructure;
+
+import utils.Point3D;
 
 public class Node implements node_data {
 	private int key;

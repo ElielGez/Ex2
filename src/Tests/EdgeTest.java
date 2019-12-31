@@ -1,9 +1,11 @@
-package Ex2;
+package Tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import dataStructure.Edge;
 
 public class EdgeTest {
 	static Edge e;

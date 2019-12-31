@@ -1,4 +1,4 @@
-package Ex2;
+package gui;
 
 import java.awt.Color;
 import java.awt.FileDialog;
@@ -19,6 +19,14 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import algorithms.Graph_Algo;
+import dataStructure.DGraph;
+import dataStructure.Node;
+import dataStructure.edge_data;
+import dataStructure.graph;
+import dataStructure.node_data;
+import utils.Point3D;
 
 
 public class GraphGUI extends JFrame implements ActionListener, MouseListener {

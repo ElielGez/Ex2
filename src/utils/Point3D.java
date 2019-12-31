@@ -3,7 +3,7 @@
  * for 2D including Point-Line test.
  */
 
-package Ex2;
+package utils;
 
 import java.io.Serializable;
 

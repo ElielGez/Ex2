@@ -1,4 +1,8 @@
-package Ex2;
+package Tests;
+
+import dataStructure.DGraph;
+import dataStructure.Node;
+import gui.GraphGUI;
 
 public class GraphGUITest {
 

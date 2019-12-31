@@ -1,4 +1,4 @@
-package Ex2;
+package algorithms;
 /**
  * This interface represents the "regular" Graph Theory algorithms including:
  * 0. clone();
@@ -14,6 +14,9 @@ package Ex2;
 
 import java.io.Serializable;
 import java.util.List;
+
+import dataStructure.graph;
+import dataStructure.node_data;
 
 
 public interface graph_algorithms extends Serializable {
