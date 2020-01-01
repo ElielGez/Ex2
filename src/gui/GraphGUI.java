@@ -266,7 +266,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 			}
 		} catch (Exception ex) {
-			System.out.println("Please insert numbers only :" + ex);
+			JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -300,7 +300,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 			}
 
 		} catch (Exception ex) {
-			System.out.println("Please insert numbers only :" + ex);
+			JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -384,7 +384,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				JOptionPane.showMessageDialog(null, "The path is : " + getPathFromList(list));
 
 			} catch (Exception ex) {
-				System.out.println("Please insert numbers only :" + ex);
+				JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		}
@@ -406,7 +406,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				}
 
 			} catch (Exception ex) {
-				System.out.println("Please insert numbers only :" + ex);
+				JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		}
@@ -423,7 +423,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 				g.connect(src, dest, w);
 				repaint();
 			} catch (Exception ex) {
-				System.out.println("Please insert numbers only :" + ex);
+				JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		}
@@ -442,7 +442,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 					JOptionPane.showMessageDialog(null, "The edge removed!");
 				}
 			} catch (Exception ex) {
-				System.out.println("Please insert numbers only :" + ex);
+				JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			break;
 		}
