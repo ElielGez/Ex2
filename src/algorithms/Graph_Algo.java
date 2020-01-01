@@ -25,6 +25,14 @@ import java.util.LinkedList;
 public class Graph_Algo implements graph_algorithms {
 	private graph g;
 
+	public Graph_Algo() {
+		
+	}
+	
+	public Graph_Algo(graph g) {
+		this.init(g);
+	}
+
 	/**
 	 * Function to init the graph on this graph_algo object
 	 */
@@ -84,7 +92,7 @@ public class Graph_Algo implements graph_algorithms {
 	public boolean isConnected() {
 		Collection<node_data> c = this.g.getV();
 		if (c.isEmpty())
-			return false;
+			return true;
 
 		for (node_data src : c) {
 			for (node_data dest : c) {
@@ -158,7 +166,8 @@ public class Graph_Algo implements graph_algorithms {
 		if (distance == Double.MAX_VALUE)
 			return null;
 		node_data nDest = this.g.getNode(dest);
-		if(nDest == null) return null;
+		if (nDest == null)
+			return null;
 		while (nDest.getKey() != src) {
 			list.add(nDest);
 			nDest = this.g.getNode(Integer.parseInt(nDest.getInfo()));
