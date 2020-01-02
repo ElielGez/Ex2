@@ -26,9 +26,9 @@ public class Graph_Algo implements graph_algorithms {
 	private graph g;
 
 	public Graph_Algo() {
-		
+
 	}
-	
+
 	public Graph_Algo(graph g) {
 		this.init(g);
 	}
@@ -198,6 +198,8 @@ public class Graph_Algo implements graph_algorithms {
 	 */
 	@Override
 	public List<node_data> TSP(List<Integer> targets) {
+		if (targets.size() == 1)
+			return null;
 		LinkedList<node_data> list = new LinkedList<node_data>();
 		for (int i = 0; i < targets.size() - 1; i++) {
 			List<node_data> l = shortestPath(targets.get(i), targets.get(i + 1));

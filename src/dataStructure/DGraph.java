@@ -64,6 +64,8 @@ public class DGraph implements graph, Serializable {
 	 */
 	@Override
 	public edge_data getEdge(int src, int dest) {
+		if (this.edges.get(src) == null || this.edges.get(src).get(dest) == null)
+			return null;
 		return this.edges.get(src).get(dest);
 	}
 
@@ -72,7 +74,7 @@ public class DGraph implements graph, Serializable {
 	 */
 	@Override
 	public void addNode(node_data n) {
-		if(this.getNode(n.getKey()) != null) {
+		if (this.getNode(n.getKey()) != null) {
 			throw new ArithmeticException("This node already exists");
 		}
 		this.vertices.put(n.getKey(), n);
@@ -95,10 +97,12 @@ public class DGraph implements graph, Serializable {
 			// new src , create new linked list of edge values.
 			hp = new LinkedHashMap<Integer, edge_data>();
 		}
+		edge_data exist = this.getEdge(src, dest);
 		edge_data e = new Edge(src, dest, w);
 		hp.put(dest, e);
 		this.edges.put(src, hp);
-		this.edgesSize++;
+		if (exist == null)
+			this.edgesSize++;
 		this.mc++;
 	}
 
