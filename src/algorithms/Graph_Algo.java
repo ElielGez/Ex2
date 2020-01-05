@@ -85,6 +85,14 @@ public class Graph_Algo implements graph_algorithms {
 
 	}
 
+	/** getter for graph 
+	 * 
+	 * @return
+	 */
+	public graph getGraph() {
+		return g;
+	}
+
 	/**
 	 * Algorithm to check if the graph is fully connected
 	 */

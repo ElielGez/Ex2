@@ -353,7 +353,7 @@ public class GraphGUI extends JFrame implements ActionListener, MouseListener {
 		case LOAD: {
 			String pathname = loadSaveDialog("Load the text file", FileDialog.LOAD);
 			this.ga.init(pathname);
-			this.g = this.ga.copy();
+			this.g = this.ga.getGraph();
 			repaint();
 			break;
 		}
